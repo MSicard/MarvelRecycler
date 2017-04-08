@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/mAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_detail_toolbar_size"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/mCollapseToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:background="@color/material_deep_teal_500"
+            android:fitsSystemWindows="true">
+
+            <ImageView
+                android:id="@+id/img_header"
+                android:background="@drawable/detail_marvel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/mToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="parallax"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/activity_detail_toolbar_margin_top"
+                app:layout_collapseMode="parallax">
+                <TextView
+                    android:layout_marginTop="@dimen/activity_detail_toolbar_title_margin"
+                    android:id="@+id/detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Marvel"
+                    android:textSize="@dimen/activity_detail_toolbar_title_size"/>
+                <TextView
+                    android:text="Superheroes de Marvel"
+                    android:layout_marginTop="@dimen/activity_detail_toolbar_subtitle_margin"
+                    android:textSize="@dimen/activity_detail_toolbar_subtitle_text_size"
+                    android:layout_below="@+id/detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:id="@+id/detail_subtitle" />
+                <View
+                    android:id="@+id/view_line"
+                    android:layout_margin="@dimen/activity_detail_margin_line"
+                    android:background="@android:color/darker_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/detail_subtitle" />
+                <GridLayout
+                    android:layout_marginTop="@dimen/activity_detail_toolbar_grid_margin"
+                    android:layout_below="@+id/view_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:columnCount="3"
+                    android:rowCount="2">
+                    <TextView
+                        android:id="@+id/column_left"
+                        android:minWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:gravity="center"
+                        android:maxWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:layout_marginLeft="@dimen/activity_detail_toolbar_txtview_margin"
+                        android:layout_marginRight="@dimen/activity_detail_toolbar_txtview_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cantidad" />
+                    <TextView
+                        android:minWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:maxWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:layout_gravity="center"
+                        android:id="@+id/column_center"
+                        android:layout_marginLeft="@dimen/activity_detail_toolbar_txtview_margin"
+                        android:layout_marginRight="@dimen/activity_detail_toolbar_txtview_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Generación"/>
+                    <TextView
+                        android:minWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:maxWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:gravity="center"
+                        android:id="@+id/column_right"
+                        android:layout_marginLeft="@dimen/activity_detail_toolbar_txtview_margin"
+                        android:layout_marginRight="@dimen/activity_detail_toolbar_txtview_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Categoria"/>
+                    <TextView
+                        android:minWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:gravity="center"
+                        android:maxWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:layout_margin="@dimen/activity_detail_toolbar_txtview_margin"
+                        android:textSize="@dimen/activity_detail_toolbar_subtxt_sizetxt"
+                        android:id="@+id/value_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"/>
+                    <TextView
+                        android:minWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:gravity="center"
+                        android:maxWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:textSize="@dimen/activity_detail_toolbar_subtxt_sizetxt"
+                        android:id="@+id/value_center"
+                        android:layout_margin="@dimen/activity_detail_toolbar_txtview_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Primera"/>
+                    <TextView
+                        android:minWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:gravity="center"
+                        android:maxWidth="@dimen/activity_detail_toolbar_txtview_width"
+                        android:textSize="@dimen/activity_detail_toolbar_subtxt_sizetxt"
+                        android:id="@+id/value_right"
+                        android:layout_margin="@dimen/activity_detail_toolbar_txtview_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Guapos"/>
+
+                </GridLayout>
+            </RelativeLayout>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill_vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/activity_detail_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/activity_detail_recycler_padding"
+                android:layout_marginTop="@dimen/activity_detail_recycler_margin_top"
+                android:layout_marginBottom="@dimen/activity_detail_recycler_margin_bottom"
+                android:scrollbars="vertical"
+                android:nestedScrollingEnabled="false"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="@dimen/activity_detail_button"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/mCollapseToolbar"
+        app:layout_anchorGravity="bottom|center"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/style_button_detail"
+        android:onClick="onClick"/>
+
+</android.support.design.widget.CoordinatorLayout>
