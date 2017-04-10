@@ -1,8 +1,10 @@
 package com.example.maritza.activitydetail2help.ItemViewHolder;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.maritza.activitydetail2help.R;
@@ -14,7 +16,7 @@ import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemSimpleImage;
  * Created by Maritza on 19/03/2017.
  */
 
-public class ItemSimpleImageViewHolder extends RecyclerView.ViewHolder {
+public class ItemSimpleImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public ImageView image;
     public TextView name;
     public TextView text;
@@ -25,6 +27,8 @@ public class ItemSimpleImageViewHolder extends RecyclerView.ViewHolder {
         image = (ImageView) view.findViewById(R.id.image);
         name = (TextView) view.findViewById(R.id.textView4);
         text = (TextView) view.findViewById(R.id.text);
+        view.setOnClickListener(this);
+
     }
 
 
@@ -47,5 +51,10 @@ public class ItemSimpleImageViewHolder extends RecyclerView.ViewHolder {
         name.setText(data.getText());
         text.setText(data.getTextView());
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.d("Click - Item", "Clicking on item");
     }
 }

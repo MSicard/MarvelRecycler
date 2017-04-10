@@ -1,6 +1,7 @@
 package com.example.maritza.activitydetail2help.ItemViewHolder;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
@@ -17,13 +18,15 @@ import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemSimpleText;
  * Created by Maritza on 19/03/2017.
  */
 
-public class ItemSimpleTextViewHolder extends RecyclerView.ViewHolder {
+public class ItemSimpleTextViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     TextView text;
     TextView name;
     LinearLayout expandArea;
     ImageView imageViewExpand;
     private static final int DURATION = 250;
+    public LinearLayout llCollapse;
+
 
     public ItemSimpleTextViewHolder(View itemView) {
         super(itemView);
@@ -31,6 +34,9 @@ public class ItemSimpleTextViewHolder extends RecyclerView.ViewHolder {
         text = (TextView) itemView.findViewById(R.id.text);
         imageViewExpand = (ImageView) itemView.findViewById(R.id.imageViewExpand);
         expandArea = (LinearLayout) itemView.findViewById(R.id.expandArea);
+        llCollapse = (LinearLayout) itemView.findViewById(R.id.llCollapse);
+        llCollapse.setOnClickListener(this);
+
     }
 
     /*public ItemSimpleTextViewHolder onCreateViewHolder(ViewGroup parent) {
@@ -77,4 +83,8 @@ public class ItemSimpleTextViewHolder extends RecyclerView.ViewHolder {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        Log.d("Click - Linear Layout", "Clicking LinearLayout");
+    }
 }
