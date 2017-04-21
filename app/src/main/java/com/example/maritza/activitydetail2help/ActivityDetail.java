@@ -2,10 +2,22 @@ package com.example.maritza.activitydetail2help;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,11 +26,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemGalery;
 import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemSimpleImage;
 import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemSimpleText;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class ActivityDetail extends AppCompatActivity {
 
@@ -29,6 +44,7 @@ public class ActivityDetail extends AppCompatActivity {
     private Button button;
     private Toolbar toolbar;
     ImageView imageToolbar;
+    ImageView roundedImage;
     private TextView title;
     private TextView subTitle;
     private TextView column_right;
@@ -61,6 +77,16 @@ public class ActivityDetail extends AppCompatActivity {
         value_right = (TextView) findViewById(R.id.value_right);
         value_center = (TextView) findViewById(R.id.value_center);
 
+        Drawable originalDrawable = getResources().getDrawable(R.drawable.detail_marvel);
+        Bitmap originalBitmap = ((BitmapDrawable) originalDrawable).getBitmap();
+        Bitmap roundedBitmap = getRoundedShape(originalBitmap);
+        Drawable roundedDrawable = new BitmapDrawable(getResources(), roundedBitmap);
+        //RoundedBitmapDrawable roundedDrawable = RoundedBitmapDrawableFactory.create(getResources(), originalBitmap);
+        //roundedDrawable.setCornerRadius(120);
+        ImageView imageView = (ImageView) findViewById(R.id.rounded_image);
+        imageView.setImageBitmap(roundedBitmap);
+        Vector<String> url = new Vector<>();
+        url.add("hola");
 
         items.add(new ItemSimpleImage("1", "Thor", "Thor el dios del trueno", R.drawable.detail_thor));
         items.add(new ItemSimpleText("3", "Thor", "Soy un tipo guapo y rubio >.O"));
@@ -75,6 +101,7 @@ public class ActivityDetail extends AppCompatActivity {
         items.add(new ItemSimpleImage("0", "Ant Man", "El pequeño Ant Man", R.drawable.detail_antman));
         items.add(new ItemSimpleText("0", "Ant Man", "No se que ponerle :v"));
         items.add(new ItemSimpleText("0", "Prueba de posición",  "No se que ponerle :v"));
+        items.add(new ItemGalery("0", "GaleríaPrueba", url));
 
 
         button = (Button) findViewById(R.id.button);
@@ -147,7 +174,7 @@ public class ActivityDetail extends AppCompatActivity {
         recycler.setLayoutManager(lManager);
 
 // Crear un nuevo adaptador
-        adapter = new AdapterDetail(items);
+        adapter = new AdapterDetail(this, items);
         recycler.setAdapter(adapter);
     }
 
@@ -237,6 +264,53 @@ public class ActivityDetail extends AppCompatActivity {
         startActivity(myIntent);
     }
 
+    public Bitmap getRoundedShape(Bitmap scaleBitmapImage) {
+        int targetWidth = 200;
+        int targetHeight = 200;
+        Bitmap targetBitmap = Bitmap.createBitmap(targetWidth, targetHeight,
+                Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(targetBitmap);
+
+        Path path = new Path();
+
+        path.addCircle(((float) targetWidth - 1) / 2,
+                ((float) targetHeight - 1) / 2,
+                (Math.min(((float) targetWidth), ((float) targetHeight)) / 2),
+                Path.Direction.CCW);
+
+        canvas.clipPath(path);
+
+        Bitmap sourceBitmap = scaleBitmapImage;
+
+        canvas.drawBitmap(sourceBitmap, new Rect(0, 0, sourceBitmap.getWidth(),
+                sourceBitmap.getHeight()), new Rect(0, 0, targetWidth,
+                targetHeight), null);
+
+        return targetBitmap;
+    }
+
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+        final float roundPx = 12;
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
+    }
   /*  public void toggleDetails(View view) {
         if(view.findViewById(R.id.item_simple_text)){
 

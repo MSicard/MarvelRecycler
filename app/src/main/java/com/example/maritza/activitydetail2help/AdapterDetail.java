@@ -1,5 +1,6 @@
 package com.example.maritza.activitydetail2help;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -16,10 +17,12 @@ public class AdapterDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private List<ItemBean> items;
     private int expandedPosition = -1;
+    Context context;
 
 
-    public AdapterDetail(List<ItemBean> items) {
+    public AdapterDetail(Context context, List<ItemBean> items) {
         this.items = items;
+        this.context = context;
     }
 
     @Override
@@ -29,13 +32,14 @@ public class AdapterDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         String type = getItemType(i);
-       return  ItemsView.getView(viewGroup, type);
+       return  ItemsView.getView(viewGroup, type, context);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         String type = getItemType(position);
         ItemsView.getBind(holder, items.get(position), type);
+        int i = 0;
     }
 
     @Override

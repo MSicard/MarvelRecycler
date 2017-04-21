@@ -17,12 +17,13 @@ import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemSimpleText;
  * Created by Maritza on 19/03/2017.
  */
 
-public class ItemSimpleTextViewHolder extends RecyclerView.ViewHolder {
+public class ItemSimpleTextViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     TextView text;
     TextView name;
     LinearLayout expandArea;
     ImageView imageViewExpand;
+    public LinearLayout llCollapse;
     private static final int DURATION = 250;
 
     public ItemSimpleTextViewHolder(View itemView) {
@@ -31,6 +32,8 @@ public class ItemSimpleTextViewHolder extends RecyclerView.ViewHolder {
         text = (TextView) itemView.findViewById(R.id.text);
         imageViewExpand = (ImageView) itemView.findViewById(R.id.imageViewExpand);
         expandArea = (LinearLayout) itemView.findViewById(R.id.expandArea);
+        llCollapse = (LinearLayout) itemView.findViewById(R.id.llCollapse);
+        llCollapse.setOnClickListener(this);
     }
 
     /*public ItemSimpleTextViewHolder onCreateViewHolder(ViewGroup parent) {
@@ -56,17 +59,6 @@ public class ItemSimpleTextViewHolder extends RecyclerView.ViewHolder {
         }*/
     }
 
-    public void toggleDetails(View view) {
-        if (expandArea.getVisibility() == View.GONE) {
-            ExpandAndCollapseViewUtil.expand(expandArea, DURATION);
-            imageViewExpand.setImageResource(R.drawable.ico_grey_down);
-            rotate(-180.0f);
-        } else {
-            ExpandAndCollapseViewUtil.collapse(expandArea, DURATION);
-            imageViewExpand.setImageResource(R.drawable.ico_grey_up);
-            rotate(180.0f);
-        }
-    }
 
     private void rotate(float angle) {
         Animation animation = new RotateAnimation(0.0f, angle, Animation.RELATIVE_TO_SELF, 0.5f,
@@ -77,4 +69,16 @@ public class ItemSimpleTextViewHolder extends RecyclerView.ViewHolder {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        if (expandArea.getVisibility() == View.GONE) {
+            ExpandAndCollapseViewUtil.expand(expandArea, DURATION);
+            imageViewExpand.setImageResource(R.drawable.ico_grey_down);
+            rotate(-180.0f);
+        } else {
+            ExpandAndCollapseViewUtil.collapse(expandArea, DURATION);
+            imageViewExpand.setImageResource(R.drawable.ico_grey_up);
+            rotate(180.0f);
+        }
+    }
 }
