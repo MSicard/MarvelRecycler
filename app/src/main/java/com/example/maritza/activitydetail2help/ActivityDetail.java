@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemImage;
 import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemSimpleImage;
 import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemSimpleText;
 
@@ -45,6 +47,8 @@ public class ActivityDetail extends AppCompatActivity {
 
     // Inicializar
     List items = new ArrayList();
+    List images = new ArrayList();
+
 
     protected void onCreate(Bundle savedInstanceState){
 
@@ -62,17 +66,20 @@ public class ActivityDetail extends AppCompatActivity {
         value_center = (TextView) findViewById(R.id.value_center);
 
 
-        items.add(new ItemSimpleImage("1", "Thor", "Thor el dios del trueno", R.drawable.detail_thor));
+        setImages();
+
+
+        items.add(new ItemSimpleImage("1", "Thor", "Thor el dios del trueno", R.drawable.detail_thor, images));
         items.add(new ItemSimpleText("3", "Thor", "Soy un tipo guapo y rubio >.O"));
-        items.add(new ItemSimpleImage("1", "Dead Pool","El inmortal DeadPool", R.drawable.detail_deapool));
+        items.add(new ItemSimpleImage("1", "Dead Pool","El inmortal DeadPool", R.drawable.detail_deapool, images));
         items.add(new ItemSimpleText("0", "DeadPool", "Me gustan las chimichangas :v"));
-        items.add(new ItemSimpleImage("0", "Wolverine", "Garritas Wolverine", R.drawable.detail_wolverine));
+        items.add(new ItemSimpleImage("0", "Wolverine", "Garritas Wolverine", R.drawable.detail_wolverine, images));
         items.add(new ItemSimpleText("0", "Wolverine", "SPOILER ALERT: mi hija me vio morir :("));
 
-        items.add(new ItemSimpleImage("0", "Dr Strange", "El drogadicto de Dr Strange", R.drawable.detail_strange));
+        items.add(new ItemSimpleImage("0", "Dr Strange", "El drogadicto de Dr Strange", R.drawable.detail_strange, images));
         items.add(new ItemSimpleText("0", "DeadPool", "Kids...las drogas son malas"));
 
-        items.add(new ItemSimpleImage("0", "Ant Man", "El pequeño Ant Man", R.drawable.detail_antman));
+        items.add(new ItemSimpleImage("0", "Ant Man", "El pequeño Ant Man", R.drawable.detail_antman, images));
         items.add(new ItemSimpleText("0", "Ant Man", "No se que ponerle :v"));
         items.add(new ItemSimpleText("0", "Prueba de posición",  "No se que ponerle :v"));
 
@@ -147,8 +154,23 @@ public class ActivityDetail extends AppCompatActivity {
         recycler.setLayoutManager(lManager);
 
 // Crear un nuevo adaptador
-        adapter = new AdapterDetail(items);
+        adapter = new AdapterDetail(items, this);
         recycler.setAdapter(adapter);
+    }
+
+    private void setImages() {
+
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+
+
     }
 
    /* private void getText(){

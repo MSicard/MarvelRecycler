@@ -1,5 +1,7 @@
 package com.example.maritza.activitydetail2help.ItemViewHolder;
 
+import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -7,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.maritza.activitydetail2help.R;
+import com.example.maritza.activitydetail2help.adapters.ItemImageRecyclerViewAdapter;
 import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemBean;
 import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemSimpleImage;
 
@@ -21,6 +25,10 @@ public class ItemSimpleImageViewHolder extends RecyclerView.ViewHolder implement
     public TextView name;
     public TextView text;
     View view;
+    RecyclerView rvImagesTest;
+
+    ItemImageRecyclerViewAdapter adapter;
+
 
     public ItemSimpleImageViewHolder(View view){
         super(view);
@@ -28,6 +36,12 @@ public class ItemSimpleImageViewHolder extends RecyclerView.ViewHolder implement
         name = (TextView) view.findViewById(R.id.textView4);
         text = (TextView) view.findViewById(R.id.text);
         view.setOnClickListener(this);
+
+        rvImagesTest = (RecyclerView) view.findViewById(R.id.rvImagesTest);
+
+        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(), 3);
+        rvImagesTest.setHasFixedSize(true);
+        rvImagesTest.setLayoutManager(layoutManager);
 
     }
 
@@ -39,17 +53,21 @@ public class ItemSimpleImageViewHolder extends RecyclerView.ViewHolder implement
         return this;
     }*/
 
-    public void bindData(ItemBean data) {
+    public void bindData(ItemBean data, Context context) {
         ItemSimpleImage item = (ItemSimpleImage) data;
-        image.setImageResource(item.getImage());
+        //image.setImageResource(item.getImage());
         name.setText(item.getText());
-        text.setText(item.getTextView());
+        //text.setText(item.getTextView());
+
+        adapter = new ItemImageRecyclerViewAdapter(context, item.getImages());
+        rvImagesTest.setAdapter(adapter);
+
     }
 
     public void bindData(ItemSimpleImage data){
-        image.setImageResource(data.getImage());
+        //image.setImageResource(data.getImage());
         name.setText(data.getText());
-        text.setText(data.getTextView());
+        //text.setText(data.getTextView());
 
     }
 

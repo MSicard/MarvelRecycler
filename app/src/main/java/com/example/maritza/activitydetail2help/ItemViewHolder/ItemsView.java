@@ -1,5 +1,6 @@
 package com.example.maritza.activitydetail2help.ItemViewHolder;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,32 +34,32 @@ public class ItemsView {
 
     }
 
-    public static void getBind(RecyclerView.ViewHolder view, ItemBean item, String type){
+    public static void getBind(RecyclerView.ViewHolder view, ItemBean item, String type, Context context){
         switch(type){
             case("item_simple_image"):
-                ((ItemSimpleImageViewHolder) view).bindData(item);
+                ((ItemSimpleImageViewHolder) view).bindData(item, context);
                 break;
             case("item_simple_text"):
                 ((ItemSimpleTextViewHolder) view).bindData(item);
                 break;
             default:
-                ((ItemSimpleImageViewHolder) view).bindData(item);
+                ((ItemSimpleImageViewHolder) view).bindData(item, context);
                 break;
         }
 
     }
 
-    public static void expand(RecyclerView.ViewHolder view, ItemBean item, String type){
+    /*public static void expand(RecyclerView.ViewHolder view, ItemBean item, String type){
         switch(type){
             case("item_simple_image"):
-                ((ItemSimpleImageViewHolder) view).bindData(item);
+                ((ItemSimpleImageViewHolder) view).bindData(item, context);
                 break;
             case("item_simple_text"):
                 ((ItemSimpleTextViewHolder) view).bindData(item);
                 break;
             default:
-                ((ItemSimpleImageViewHolder) view).bindData(item);
+                ((ItemSimpleImageViewHolder) view).bindData(item, context);
                 break;
         }
-    }
+    }*/
 }
