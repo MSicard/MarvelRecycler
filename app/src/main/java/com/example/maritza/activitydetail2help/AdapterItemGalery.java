@@ -52,8 +52,8 @@ public class AdapterItemGalery extends BaseAdapter {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(images[i]);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setLayoutParams(new GridView.LayoutParams(240,240));
-        return null;
+        imageView.setLayoutParams(new GridView.LayoutParams(140,140));
+        return imageView;
         /*getHttpObservable().setServerAddress(background);
         getHttpObservable().requestImageByUrl(background,imageToolbar);*/
     }
