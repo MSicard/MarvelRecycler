@@ -20,7 +20,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/llCollapse"
+            android:id="@+id/item_galery_collapse"
             android:weightSum="1">
             <ImageView
                 android:layout_width="wrap_content"
@@ -44,23 +44,23 @@
         </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/item_galery_expandArea">
-            <GridView
-                android:rowCount="4"
-                android:columnCount="4"
-                android:id="@+id/item_galery_gridview"
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnWidth = "60dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:horizontalSpacing="5dp"
-                android:verticalSpacing="5dp"
-                android:numColumns="4"
-                android:stretchMode="columnWidth">
-            </GridView>
+                android:layout_height="200dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_gravity="fill_vertical">
+                <android.support.v7.widget.RecyclerView
+                    android:nestedScrollingEnabled="false"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:id="@+id/item_galery_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </android.support.v7.widget.RecyclerView>
+            </android.support.v4.widget.NestedScrollView>
         </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

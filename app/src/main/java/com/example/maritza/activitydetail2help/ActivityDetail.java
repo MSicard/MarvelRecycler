@@ -1,6 +1,5 @@
 package com.example.maritza.activitydetail2help;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -16,8 +15,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,7 +24,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemAdView;
 import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemGalery;
+import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemImage;
 import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemSimpleImage;
 import com.example.maritza.activitydetail2help.beans.ItemBeans.ItemSimpleText;
 
@@ -61,6 +60,7 @@ public class ActivityDetail extends AppCompatActivity {
 
     // Inicializar
     List items = new ArrayList();
+    ArrayList images = new ArrayList();
 
     protected void onCreate(Bundle savedInstanceState){
 
@@ -85,24 +85,25 @@ public class ActivityDetail extends AppCompatActivity {
         //roundedDrawable.setCornerRadius(120);
         ImageView imageView = (ImageView) findViewById(R.id.rounded_image);
         imageView.setImageBitmap(roundedBitmap);
-        Vector<String> url = new Vector<>();
-        url.add("hola");
 
-        items.add(new ItemSimpleImage("1", "Thor", "Thor el dios del trueno", R.drawable.detail_thor));
+        setImages();
+
+        items.add(new ItemGalery("2", "Galery", images));
+        //items.add(new ItemSimpleImage("1", "Thor", "Thor el dios del trueno", R.drawable.detail_thor, images));
         items.add(new ItemSimpleText("3", "Thor", "Soy un tipo guapo y rubio >.O"));
-        items.add(new ItemSimpleImage("1", "Dead Pool","El inmortal DeadPool", R.drawable.detail_deapool));
+       // items.add(new ItemSimpleImage("1", "Dead Pool","El inmortal DeadPool", R.drawable.detail_deapool, images));
         items.add(new ItemSimpleText("0", "DeadPool", "Me gustan las chimichangas :v"));
-        items.add(new ItemSimpleImage("0", "Wolverine", "Garritas Wolverine", R.drawable.detail_wolverine));
+        //items.add(new ItemSimpleImage("0", "Wolverine", "Garritas Wolverine", R.drawable.detail_wolverine, images));
         items.add(new ItemSimpleText("0", "Wolverine", "SPOILER ALERT: mi hija me vio morir :("));
 
-        items.add(new ItemSimpleImage("0", "Dr Strange", "El drogadicto de Dr Strange", R.drawable.detail_strange));
+        items.add(new ItemSimpleImage("0", "Dr Strange", images));
         items.add(new ItemSimpleText("0", "DeadPool", "Kids...las drogas son malas"));
 
-        items.add(new ItemSimpleImage("0", "Ant Man", "El pequeño Ant Man", R.drawable.detail_antman));
+        items.add(new ItemSimpleImage("0", "Ant Man", images));
         items.add(new ItemSimpleText("0", "Ant Man", "No se que ponerle :v"));
         items.add(new ItemSimpleText("0", "Prueba de posición",  "No se que ponerle :v"));
-        items.add(new ItemGalery("0", "GaleríaPrueba", url));
 
+        items.set((int) (Math.random() * items.size() - 1) + 1, new ItemAdView("json", "idUnit", "idDevice"));
 
         button = (Button) findViewById(R.id.button);
         toolbar = (Toolbar) findViewById(R.id.mToolbar);
@@ -262,6 +263,18 @@ public class ActivityDetail extends AppCompatActivity {
     public void onClick(View view){
         Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(external_url));
         startActivity(myIntent);
+    }
+
+    private void setImages() {
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
+        images.add(new ItemImage("Sample", "http://pipsum.com/435x310.jpg"));
     }
 
     public Bitmap getRoundedShape(Bitmap scaleBitmapImage) {

@@ -32,13 +32,13 @@ public class AdapterDetail extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         String type = getItemType(i);
-       return  ItemsView.getView(viewGroup, type, context);
+       return  ItemsView.getView(viewGroup, type);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         String type = getItemType(position);
-        ItemsView.getBind(holder, items.get(position), type);
+        ItemsView.getBind(holder, items.get(position), type, context);
         int i = 0;
     }
 
